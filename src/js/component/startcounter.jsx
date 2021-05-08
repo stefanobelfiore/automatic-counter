@@ -4,17 +4,14 @@ const StartCounter = props => {
 	const [myNumber, setMyNumber] = useState(0);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
+		setInterval(() => {
 			if (myNumber !== 9) {
-				setMyNumber(myNumber + 1);
-			} else {
-				setMyNumber(0);
+				setMyNumber(myNumber => myNumber + 1);
 			}
 		}, props.time * 1000);
-		return () => clearInterval(interval);
-	}, [myNumber]);
+	}, []);
 
-	return <div className="one">{myNumber}</div>;
+	return <div className="one">{myNumber % 10}</div>;
 };
 StartCounter.propTypes = {
 	time: PropTypes.number
